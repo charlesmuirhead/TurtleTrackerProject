@@ -9,6 +9,9 @@
 # Date:   Fall 2023
 #--------------------------------------------------------------
 
+# Ask the user for a date, specifying the format
+user_date = input("Enter a date (M/D/YYYY)")
+
 #Create a variable pointing to the data file
 file_name = 'data/raw/sara.txt'
 
@@ -49,5 +52,18 @@ for lineString in line_list:
         date_dict[record_id] = obs_date
         location_dict[record_id] = (obs_lat, obs_lon)
 
-    #Print the location of sara
-    #print(f"Record {record_id} indicates Sara was seen at lat:{obs_lat},lon:{obs_lon} on {obs_date}")
+#Initialize key list
+keys = []
+
+# Loop through all key, value pairs in the date_dictionary
+for key, value in date_dict.items():
+    #See if the date (the value) matches the user date
+    if value == user_date:
+        keys.append(key)    
+
+#Reveal locations for each key in matching_keys
+for key in keys: 
+    location = location_dict[key]
+    lat = location[0]
+    lng = location[1]
+    print(f"On {user_date}, Sara the the turtle was seen at {lat}d Lat, {lng}d Lng.")
